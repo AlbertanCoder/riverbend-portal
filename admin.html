@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staff console — Village of Riverbend</title>
+<link rel="stylesheet" href="css/gov.css">
+</head>
+<body>
+<div class="skip-links">
+  <a href="#main">Skip to main content</a>
+  <a href="#gov-nav">Skip to navigation</a>
+</div>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span class="flag">Government of Alberta</span>
+    <span class="strip-sub">Village of Riverbend — Authorized staff only</span>
+    <a class="demo-flag" href="privacy.html">Demonstration system — synthetic data</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="crest" aria-hidden="true">RB</span>
+    <a class="wordmark" href="index.html">
+      <span class="village">Staff Console</span>
+      <span class="official">Municipal Records and Property Tax Portal</span>
+    </a>
+    <div class="mast-tools">
+      <form class="search-form" action="search.html" method="get" role="search">
+        <label class="sr-only" for="q-admin">Search the resident directory</label>
+        <input id="q-admin" name="q" type="search" placeholder="Search residents, occupations">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="gov-nav" id="gov-nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a href="index.html">Home</a>
+    <a href="search.html">Resident directory</a>
+    <a href="portal.html">My account</a>
+    <a class="active" href="admin.html">Staff</a>
+    <a href="https://38.253.124.176:8443/docs">API</a>
+    <span class="nav-user" id="nav-user"></span>
+  </div>
+</nav>
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li>Staff console</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main" class="section">
+  <div class="wrap">
+    <div id="gate" class="card center hidden">
+      <h1>Staff access required</h1>
+      <p class="sub">Sign in with a staff or administrator account.
+      Demonstration credentials: <span class="mono">admin / Riverbend2026!</span></p>
+      <p><a class="btn" href="login.html">Sign in</a></p>
+    </div>
+
+    <div id="content" class="hidden">
+      <h1>Staff console</h1>
+      <p class="sub">Live municipal statistics for the Village of Riverbend.
+      Every staff record access is written to the audit log.</p>
+
+      <div class="secure-bar mb-24">
+        <span class="lock" aria-hidden="true">&#128274;</span>
+        <strong>Privileged session.</strong>
+        <span>Decrypted record views are audited. Data is synthetic demonstration
+        material only.</span>
+      </div>
+
+      <div class="grid grid-4 mb-24">
+        <div class="card stat"><span class="num" id="k-residents">—</span><span class="lbl">Residents</span></div>
+        <div class="card stat"><span class="num" id="k-households">—</span><span class="lbl">Households</span></div>
+        <div class="card stat"><span class="num" id="k-levied">—</span><span class="lbl">Property tax levied</span></div>
+        <div class="card stat"><span class="num" id="k-rate">—</span><span class="lbl">Collection rate</span></div>
+      </div>
+
+      <div class="grid grid-3 mb-24">
+        <div class="card">
+          <h4 class="mb-16">Tax status split</h4>
+          <div class="table-wrap"><table id="status-table"><tbody></tbody></table></div>
+        </div>
+        <div class="card">
+          <h4 class="mb-16">Top occupations</h4>
+          <div class="table-wrap"><table id="jobs-table"><tbody></tbody></table></div>
+        </div>
+        <div class="card">
+          <h4 class="mb-16">Education breakdown</h4>
+          <div class="table-wrap"><table id="edu-table"><tbody></tbody></table></div>
+        </div>
+      </div>
+
+      <h2>Tax roll</h2>
+      <div class="pill-row mt-16 mb-16">
+        <label class="sr-only" for="f-status">Tax status</label>
+        <select id="f-status">
+          <option value="">All tax statuses</option>
+          <option value="paid">Paid</option>
+          <option value="partial">Partial</option>
+          <option value="outstanding">Outstanding</option>
+        </select>
+        <label class="sr-only" for="f-use">Land use</label>
+        <select id="f-use">
+          <option value="">All land uses</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+          <option value="agricultural">Agricultural</option>
+          <option value="vacant">Vacant</option>
+        </select>
+        <button class="btn" id="f-apply">Apply filters</button>
+        <button class="btn btn-secondary" id="f-clear">Clear</button>
+      </div>
+      <div class="table-wrap">
+        <table id="roll-table">
+          <caption>2026 property tax roll</caption>
+          <thead><tr>
+            <th>Parcel</th><th>Civic address</th><th>Owner</th><th>Land use</th>
+            <th class="num">Assessed</th><th class="num">Levied</th><th class="num">Paid</th><th>Status</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="pill-row mt-16">
+        <button class="btn btn-secondary" id="page-prev">Previous</button>
+        <span class="muted" id="page-info"></span>
+        <button class="btn btn-secondary" id="page-next">Next</button>
+      </div>
+
+      <h2 class="mt-32">Audit chain <span class="badge badge-info">SHA-256</span></h2>
+      <div class="card mt-16 mb-16">
+        <p id="audit-status" class="mb-16"></p>
+        <button class="btn" id="audit-verify">Re-verify chain</button>
+      </div>
+      <div class="table-wrap">
+        <table id="audit-table">
+          <caption>Recent audit log entries</caption>
+          <thead><tr><th>When (UTC)</th><th>Actor</th><th>Action</th><th>Detail</th><th>Entry hash</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-caution mt-24">
+        <h4>Demonstration scope</h4>
+        <p class="mb-0">A matching chain means stored hashes are internally
+        consistent. It is tamper-evident — not immutable and not a security
+        certification. All records are synthetic.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="privacy.html#disclaimer">Disclaimer</a>
+      <a href="https://38.253.124.176:8443/docs">API documentation</a>
+    </div>
+    <p class="meta mb-0">© 2026 Village of Riverbend. Demonstration system —
+    all records are synthetic. Date modified: 26 October 2026</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

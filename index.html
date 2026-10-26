@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Official demonstration of the Village of Riverbend municipal records and property tax portal — secure, encrypted, accessible.">
+<title>Village of Riverbend — Municipal Records and Property Tax Portal</title>
+<link rel="stylesheet" href="css/gov.css">
+</head>
+<body>
+<div class="skip-links">
+  <a href="#main">Skip to main content</a>
+  <a href="#gov-nav">Skip to navigation</a>
+</div>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span class="flag">Government of Alberta</span>
+    <span class="strip-sub">Village of Riverbend</span>
+    <a class="demo-flag" href="privacy.html">Demonstration system — synthetic data</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="crest" aria-hidden="true">RB</span>
+    <a class="wordmark" href="index.html">
+      <span class="village">Village of Riverbend</span>
+      <span class="official">Municipal Records and Property Tax Portal</span>
+    </a>
+    <div class="mast-tools">
+      <form class="search-form" action="search.html" method="get" role="search">
+        <label class="sr-only" for="q-home">Search the resident directory</label>
+        <input id="q-home" name="q" type="search" placeholder="Search residents, occupations">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="gov-nav" id="gov-nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a class="active" href="index.html">Home</a>
+    <a href="search.html">Resident directory</a>
+    <a href="portal.html">My account</a>
+    <a href="admin.html">Staff</a>
+    <a href="https://38.253.124.176:8443/docs">API</a>
+    <span class="nav-user" id="nav-user"></span>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Municipal services, records, and property taxes — online and encrypted.</h1>
+      <p class="lead">The Village of Riverbend serves 1,374 residents across 612 households.
+      View your assessment, review property taxes, check utility accounts, and manage your
+      household file — protected by AES-256-GCM encryption at rest.</p>
+      <div class="actions">
+        <a class="btn" href="login.html#register">Create an account</a>
+        <a class="btn btn-ghost" href="login.html">Sign in</a>
+        <a class="btn btn-ghost" href="search.html">Search the directory</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Village statistics">
+    <div class="wrap">
+      <div class="grid grid-4">
+        <div class="card stat"><span class="num" id="stat-residents">—</span><span class="lbl">Residents on file</span></div>
+        <div class="card stat"><span class="num" id="stat-households">—</span><span class="lbl">Households</span></div>
+        <div class="card stat"><span class="num" id="stat-properties">—</span><span class="lbl">Properties assessed</span></div>
+        <div class="card stat"><span class="num">AES-256</span><span class="lbl">GCM encryption at rest</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="services">
+    <div class="wrap">
+      <h2>Resident services</h2>
+      <p class="sub">Everything you would expect from a modern municipal office —
+      available online, secured to provincial standards.</p>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="icon" aria-hidden="true">$</span>
+          <h3><a href="portal.html">Property taxes</a></h3>
+          <p>Review your assessment, mill rate, taxes levied and paid, and current
+          payment status for the 2026 tax year.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">~</span>
+          <h3><a href="portal.html">Utility accounts</a></h3>
+          <p>Water, sewer, and solid waste accounts with balances and arrears
+          notices in one place.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">&#9638;</span>
+          <h3><a href="search.html">Resident directory</a></h3>
+          <p>Public lookup of village residents and occupations. Personal contact
+          details remain encrypted and are never published.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">H</span>
+          <h3><a href="portal.html">My household</a></h3>
+          <p>Create an account to view your household file — assessment details,
+          residency record, and contact information.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">&#10022;</span>
+          <h3><a href="admin.html">Staff console</a></h3>
+          <p>Authorized village staff can review the tax roll, verify assessments,
+          and monitor the tamper-evident audit log.</p>
+        </div>
+        <div class="card">
+          <span class="icon" aria-hidden="true">{ }</span>
+          <h3><a href="https://38.253.124.176:8443/docs">Developer API</a></h3>
+          <p>Every service is backed by a documented REST API with interactive
+          documentation and role-based access control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="security">
+    <div class="wrap">
+      <h2>How we protect your information</h2>
+      <div class="secure-bar mb-24">
+        <span class="lock" aria-hidden="true">&#128274;</span>
+        <strong>Encrypted session.</strong>
+        <span>Transport security (TLS), AES-256-GCM encryption at rest, and
+        tamper-evident audit logging are active on this system.</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="card">
+          <h4>Encryption at rest</h4>
+          <p class="mb-0">Personal and assessment data is stored as AES-256-GCM
+          ciphertext with a unique nonce per record and tamper-evident tags.</p>
+        </div>
+        <div class="card">
+          <h4>Encryption in transit</h4>
+          <p class="mb-0">TLS-secured connections with HSTS, strict content security
+          policy, frame denial, and clickjacking protection on every response.</p>
+        </div>
+        <div class="card">
+          <h4>Account security</h4>
+          <p class="mb-0">PBKDF2-HMAC-SHA256 password hashing (60,000 iterations),
+          brute-force lockout, signed session tokens, and CSRF guards on all writes.</p>
+        </div>
+      </div>
+      <p class="mt-24"><a href="https://38.253.124.176:8443/api/audit/verify">Verify the audit chain</a> ·
+      <a href="privacy.html">Privacy policy</a> ·
+      <a href="accessibility.html">Accessibility</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="privacy.html#disclaimer">Disclaimer</a>
+      <a href="https://38.253.124.176:8443/docs">API documentation</a>
+      <a href="login.html">Sign in</a>
+    </div>
+    <div class="cols">
+      <div>
+        <h4>Village of Riverbend</h4>
+        <p class="meta mb-0">Municipal Office<br>100 Main Street<br>Riverbend, Alberta T0B 1A0</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="portal.html">Property taxes</a></li>
+          <li><a href="portal.html">Utility accounts</a></li>
+          <li><a href="search.html">Resident directory</a></li>
+          <li><a href="admin.html">Staff console</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About this site</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="accessibility.html">Accessibility statement</a></li>
+          <li><a href="https://38.253.124.176:8443/api/audit/verify">Audit verification</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="meta mt-24 mb-0">© 2026 Village of Riverbend. Demonstration system —
+    the Village of Riverbend is fictitious and all records are synthetic.
+    Date modified: 26 October 2026</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility — Village of Riverbend</title>
+<link rel="stylesheet" href="css/gov.css">
+</head>
+<body>
+<div class="skip-links">
+  <a href="#main">Skip to main content</a>
+  <a href="#gov-nav">Skip to navigation</a>
+</div>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span class="flag">Government of Alberta</span>
+    <span class="strip-sub">Village of Riverbend</span>
+    <a class="demo-flag" href="privacy.html">Demonstration system — synthetic data</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="crest" aria-hidden="true">RB</span>
+    <a class="wordmark" href="index.html">
+      <span class="village">Village of Riverbend</span>
+      <span class="official">Municipal Records and Property Tax Portal</span>
+    </a>
+    <div class="mast-tools">
+      <form class="search-form" action="search.html" method="get" role="search">
+        <label class="sr-only" for="q-acc">Search the resident directory</label>
+        <input id="q-acc" name="q" type="search" placeholder="Search residents, occupations">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="gov-nav" id="gov-nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a href="index.html">Home</a>
+    <a href="search.html">Resident directory</a>
+    <a href="portal.html">My account</a>
+    <a href="admin.html">Staff</a>
+    <a href="https://38.253.124.176:8443/docs">API</a>
+    <span class="nav-user" id="nav-user"></span>
+  </div>
+</nav>
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li>Accessibility</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main" class="section">
+  <div class="wrap wrap-narrow">
+    <h1>Accessibility statement</h1>
+    <p class="sub">This portal is built to Web Content Accessibility Guidelines
+    (WCAG) 2.2 level AA, consistent with Government of Alberta digital design
+    standards.</p>
+
+    <h2>Features</h2>
+    <ul>
+      <li>Skip links to main content and navigation on every page.</li>
+      <li>Semantic headings, landmarks, breadcrumbs, and labelled form fields.</li>
+      <li>Keyboard-operable controls with visible focus indicators
+      (gold outline, per Alberta brand standards).</li>
+      <li>Colour contrast meeting WCAG AA thresholds for text and interactive
+      elements.</li>
+      <li>Responsive layouts supporting browser zoom up to 200%.</li>
+      <li>Print-friendly styles for council and office packages.</li>
+    </ul>
+
+    <h2>Known limitations</h2>
+    <ul>
+      <li>Large data tables scroll horizontally on small screens.</li>
+      <li>This demonstration has not completed a formal third-party audit.</li>
+    </ul>
+
+    <h2>Feedback</h2>
+    <p>In a production deployment, accessibility feedback would be routed to the
+    municipal office with a committed response window. For this demonstration,
+    please report issues to the operator of this instance.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="privacy.html#disclaimer">Disclaimer</a>
+      <a href="https://38.253.124.176:8443/docs">API documentation</a>
+    </div>
+    <p class="meta mb-0">© 2026 Village of Riverbend. Demonstration system —
+    all records are synthetic. Date modified: 26 October 2026</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

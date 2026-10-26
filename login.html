@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — Village of Riverbend</title>
+<link rel="stylesheet" href="css/gov.css">
+</head>
+<body>
+<div class="skip-links">
+  <a href="#main">Skip to main content</a>
+  <a href="#gov-nav">Skip to navigation</a>
+</div>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span class="flag">Government of Alberta</span>
+    <span class="strip-sub">Village of Riverbend</span>
+    <a class="demo-flag" href="privacy.html">Demonstration system — synthetic data</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="crest" aria-hidden="true">RB</span>
+    <a class="wordmark" href="index.html">
+      <span class="village">Village of Riverbend</span>
+      <span class="official">Municipal Records and Property Tax Portal</span>
+    </a>
+    <div class="mast-tools">
+      <form class="search-form" action="search.html" method="get" role="search">
+        <label class="sr-only" for="q-login">Search the resident directory</label>
+        <input id="q-login" name="q" type="search" placeholder="Search residents, occupations">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="gov-nav" id="gov-nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a href="index.html">Home</a>
+    <a href="search.html">Resident directory</a>
+    <a href="portal.html">My account</a>
+    <a href="admin.html">Staff</a>
+    <a href="https://38.253.124.176:8443/docs">API</a>
+    <span class="nav-user" id="nav-user"></span>
+  </div>
+</nav>
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li>Sign in</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main" class="section">
+  <div class="wrap wrap-narrow">
+    <h1>Sign in to your account</h1>
+    <p class="sub">Access your household file, property taxes, and utility accounts.
+    New residents can create an account instantly.</p>
+
+    <div class="secure-bar mb-24">
+      <span class="lock" aria-hidden="true">&#128274;</span>
+      <strong>Secure sign-in.</strong>
+      <span>Credentials are protected with PBKDF2-HMAC-SHA256 hashing (60,000
+      iterations). Sessions expire automatically after 8 hours.</span>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" id="tab-login" role="tab" aria-selected="true">Sign in</button>
+      <button class="tab" id="tab-register" role="tab" aria-selected="false">Create account</button>
+    </div>
+
+    <div class="grid grid-form">
+      <div class="card" id="pane-login">
+        <h3 class="mb-16">Welcome back</h3>
+        <form id="login-form" autocomplete="on">
+          <div class="field">
+            <label for="li-user">Username</label>
+            <input id="li-user" required autocomplete="username" minlength="3" maxlength="32">
+          </div>
+          <div class="field">
+            <label for="li-pass">Password</label>
+            <input id="li-pass" type="password" required autocomplete="current-password" minlength="8">
+          </div>
+          <button class="btn btn-block" type="submit">Sign in</button>
+          <p class="form-note" id="login-msg" role="status" aria-live="polite"></p>
+        </form>
+        <hr class="gov">
+        <h4>Demonstration accounts</h4>
+        <p class="form-note">Published demo credentials — presentation only.</p>
+        <div class="pill-row">
+          <button class="btn btn-secondary persona" type="button" data-u="admin" data-p="Riverbend2026!">Administrator</button>
+          <button class="btn btn-secondary persona" type="button" data-u="staff1" data-p="Riverbend2026!">Office staff</button>
+          <button class="btn btn-secondary persona" type="button" data-u="demo_res1" data-p="Riverbend2026!">Resident (owner)</button>
+          <button class="btn btn-secondary persona" type="button" data-u="demo_res2" data-p="Riverbend2026!">Resident (renter)</button>
+        </div>
+      </div>
+
+      <div class="card" id="pane-register">
+        <h3 class="mb-16">Create your account</h3>
+        <p class="form-note">Instant registration — no real personal information
+        required. Your account is linked to a synthetic resident record so you can
+        explore the portal immediately.</p>
+        <form id="register-form">
+          <div class="field">
+            <label for="rg-name">Full name</label>
+            <input id="rg-name" required minlength="2" maxlength="96" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="rg-user">Username</label>
+            <input id="rg-user" required minlength="3" maxlength="32"
+                   pattern="[a-zA-Z0-9_.\-]+" autocomplete="username">
+          </div>
+          <div class="field">
+            <label for="rg-pass">Password</label>
+            <input id="rg-pass" type="password" required minlength="8" maxlength="128"
+                   autocomplete="new-password" aria-describedby="strength-text">
+            <div class="strength-meter" aria-hidden="true"><div class="bar" id="strength-bar"></div></div>
+            <p class="form-note" id="strength-text" aria-live="polite">Minimum 8 characters.
+            Use a mix of upper and lower case letters, numbers, and symbols.</p>
+          </div>
+          <div class="field">
+            <label for="rg-email">Email (optional)</label>
+            <input id="rg-email" type="email" maxlength="120">
+          </div>
+          <button class="btn btn-block" type="submit">Create account</button>
+          <p class="form-note" id="register-msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="alert alert-info mt-24">
+      <h4>Why create an account?</h4>
+      <p class="mb-0">Residents see their own household file — property assessment,
+      tax statement, and utility balances — with sensitive fields decrypted on the
+      fly. Staff accounts unlock the full console: KPIs, tax roll, and the audit
+      chain.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="privacy.html#disclaimer">Disclaimer</a>
+      <a href="https://38.253.124.176:8443/docs">API documentation</a>
+    </div>
+    <p class="meta mb-0">© 2026 Village of Riverbend. Demonstration system —
+    all records are synthetic. Date modified: 26 October 2026</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>
+          <button class="btn btn-secondary persona" type="button" data-u="admin" data-p="Riverbend2026!">Administrator</button>
+          <button class="btn btn-secondary persona" type="button" data-u="staff1" data-p="Riverbend2026!">Office staff</button>
+          <button class="btn btn-secondary persona" type="button" data-u="demo_res1" data-p="Riverbend2026!">Resident (owner)</button>
+          <button class="btn btn-secondary persona" type="button" data-u="demo_res2" data-p="Riverbend2026!">Resident (renter)</button>
+        </div>
+      </div>

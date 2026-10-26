@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My account — Village of Riverbend</title>
+<link rel="stylesheet" href="css/gov.css">
+</head>
+<body>
+<div class="skip-links">
+  <a href="#main">Skip to main content</a>
+  <a href="#gov-nav">Skip to navigation</a>
+</div>
+
+<div class="gov-strip">
+  <div class="wrap">
+    <span class="flag">Government of Alberta</span>
+    <span class="strip-sub">Village of Riverbend</span>
+    <a class="demo-flag" href="privacy.html">Demonstration system — synthetic data</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <span class="crest" aria-hidden="true">RB</span>
+    <a class="wordmark" href="index.html">
+      <span class="village">Village of Riverbend</span>
+      <span class="official">Municipal Records and Property Tax Portal</span>
+    </a>
+    <div class="mast-tools">
+      <form class="search-form" action="search.html" method="get" role="search">
+        <label class="sr-only" for="q-portal">Search the resident directory</label>
+        <input id="q-portal" name="q" type="search" placeholder="Search residents, occupations">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="gov-nav" id="gov-nav" aria-label="Main navigation">
+  <div class="wrap">
+    <a href="index.html">Home</a>
+    <a href="search.html">Resident directory</a>
+    <a class="active" href="portal.html">My account</a>
+    <a href="admin.html">Staff</a>
+    <a href="https://38.253.124.176:8443/docs">API</a>
+    <span class="nav-user" id="nav-user"></span>
+  </div>
+</nav>
+
+<nav class="crumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <ol>
+      <li><a href="index.html">Home</a></li>
+      <li>My account</li>
+    </ol>
+  </div>
+</nav>
+
+<main id="main" class="section">
+  <div class="wrap">
+    <div id="gate" class="card center hidden">
+      <h1>Please sign in</h1>
+      <p class="sub">Access to household files requires a verified account.</p>
+      <p><a class="btn" href="login.html">Sign in</a>
+      <a class="btn btn-secondary" href="login.html#register">Create account</a></p>
+    </div>
+
+    <div id="content" class="hidden">
+      <h1 id="welcome">My household</h1>
+      <p class="sub" id="welcome-sub"></p>
+
+      <div class="secure-bar mb-24">
+        <span class="lock" aria-hidden="true">&#128274;</span>
+        <strong>Encrypted record view.</strong>
+        <span>Sensitive fields are decrypted only for this authorized session and
+        every view is written to the tamper-evident audit log.</span>
+      </div>
+
+      <div class="grid grid-4 mb-24">
+        <div class="card stat"><span class="num" id="k-address">—</span><span class="lbl">Civic address</span></div>
+        <div class="card stat"><span class="num" id="k-assessed">—</span><span class="lbl">Assessed value</span></div>
+        <div class="card stat"><span class="num" id="k-taxstatus">—</span><span class="lbl">Property tax status</span></div>
+        <div class="card stat"><span class="num" id="k-balance">—</span><span class="lbl">Utility balance</span></div>
+      </div>
+
+      <div class="grid grid-form">
+        <div class="card">
+          <h3 class="mb-16">Resident record</h3>
+          <div class="table-wrap"><table id="resident-table"><tbody></tbody></table></div>
+        </div>
+        <div class="card">
+          <h3 class="mb-16">Contact details
+            <span class="badge badge-info">Encrypted at rest</span></h3>
+          <p class="form-note">Stored as AES-256-GCM ciphertext. Decrypted only for
+          this authorized view.</p>
+          <div class="table-wrap"><table id="contact-table"><tbody></tbody></table></div>
+          <details class="mt-16">
+            <summary class="muted">Show raw ciphertext</summary>
+            <div class="cipher-box mt-8" id="cipher-preview"></div>
+          </details>
+        </div>
+      </div>
+
+      <h2 class="mt-32">Property and taxes</h2>
+      <div class="table-wrap mb-24">
+        <table id="props-table">
+          <caption>2026 assessment and property tax summary</caption>
+          <thead><tr>
+            <th>Parcel</th><th>Land use</th><th class="num">Assessed</th>
+            <th class="num">Tax levied</th><th class="num">Tax paid</th><th>Status</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h2>Utility accounts</h2>
+      <div class="table-wrap">
+        <table id="utils-table">
+          <caption>Water, sewer, and solid waste accounts</caption>
+          <thead><tr><th>Account</th><th>Service</th><th class="num">Balance</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-info mt-24">
+        <h4>How this page works</h4>
+        <p class="mb-0">Your session is a signed, httpOnly cookie. The server decrypts
+        sensitive fields only after authentication and role checks, and every view is
+        written to the SHA-256 hash-chained audit log.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="privacy.html">Privacy</a>
+      <a href="accessibility.html">Accessibility</a>
+      <a href="privacy.html#disclaimer">Disclaimer</a>
+      <a href="https://38.253.124.176:8443/docs">API documentation</a>
+    </div>
+    <p class="meta mb-0">© 2026 Village of Riverbend. Demonstration system —
+    all records are synthetic. Date modified: 26 October 2026</p>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/portal.js"></script>
+</body>
+</html>
