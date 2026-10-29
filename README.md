@@ -1,5 +1,8 @@
 # Village of Riverbend — Public Portal (static site)
 
+> **Replaced.** This was the first Riverbend demo. The new one is at
+> [AlbertanCoder/riverbend](https://github.com/AlbertanCoder/riverbend). This repository is archived.
+
 Static front end for the Riverbend municipal records demonstration.
 
 **Architecture:** this site is hosted on GitHub Pages. The application
